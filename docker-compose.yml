@@ -16,6 +16,29 @@ services:
       - ./data/redisdata:/data
     restart: on-failure
 
+  redismodules:
+    image: redislabs/redismod:latest
+    ports:
+      - 6380:6379
+    networks:
+      - tools
+    volumes:
+      - ./data/redismoddata:/data
+    environment:
+      - TZ=Asia/Dhaka
+    restart: on-failure
+
+  redisinsights:
+    image: redislabs/redisinsight:latest
+    ports:
+      - 8001:8001
+    networks:
+      - tools
+    environment:
+      - TZ=Asia/Dhaka
+    volumes:
+      - ./data/redisinsightdata:/db
+
   mongodb:
     image: 'mongo:latest'
     ports:
@@ -59,3 +82,4 @@ services:
       - MYSQL_USER=mysql
       - MYSQL_PASSWORD=mysql
       - TZ=Asia/Dhaka
+
