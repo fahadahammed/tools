@@ -67,7 +67,7 @@ services:
       - TZ=Asia/Dhaka
 
   mysql:
-    image: mysql
+    image: mysql:latest
     platform: linux/x86_64
     restart: always
     ports:
